@@ -112,6 +112,6 @@
   },
   "include": [
     "src/**/*",
-    "src/generated/**/*" // explicitly include generated files
+    "src/generated/**/*", // explicitly include generated files
   ]
 }
