@@ -40,17 +40,8 @@ export const loginSchema= sanitizeObject(z.object({
     password: z.string()
 }))
 
-export const emailSchema= sanitizeObject(z.object({
-    email:z.string()
-}))
-
 export const userIdSchema= sanitizeObject(z.object({
     userId:z.string()
-}))
-
-export const changePasswordSchema= sanitizeObject(z.object({
-    token:z.string(),
-    newPassword: z.string()
 }))
 
 export const tokenSchema= sanitizeObject(z.object({
