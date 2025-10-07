@@ -411,10 +411,4 @@ The API uses standard HTTP status codes:
 
 
 
----
-
-<<<<<<< HEAD
 **Happy Coding! 🚀**
-=======
-**Happy Coding! 🚀**
->>>>>>> 30542e67f8dafd35d7de274e6729f0df31dae310
