@@ -14,9 +14,8 @@ A RESTful API for managing tasks with user authentication and authorization buil
 - [API Endpoints](#api-endpoints)
   - [Authentication](#authentication)
   - [Task Management](#task-management)
-- [Request Examples](#request-examples)
 - [Error Handling](#error-handling)
-- [License](#license)
+
 
 ## ✨ Features
 
@@ -37,8 +36,8 @@ Before you begin, ensure you have the following installed:
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/task-management-api.git
-cd task-management-api
+git clone  https://github.com/iambasill/GadaHQ
+cd GadaHQ
 ```
 
 2. Install dependencies
@@ -46,25 +45,20 @@ cd task-management-api
 npm install
 ```
 
-3. Create a `.env` file in the root directory
-```env
-PORT=5000
-JWT_SECRET=your_jwt_secret_key
-DATABASE_URL=your_database_url
-```
+3. edit a `.env.example` file in the root directory
 
 4. Start the server
 ```bash
 npm start
 ```
 
-The API will be running at `http://localhost:5000`
+The API will be running at Port `5000`
 
 ## 🚀 API Endpoints
 
 ### Base URL
 ```
-http://localhost:5000/api
+http://localhost:5000/api  || gadahq.myport.com.ng/api
 ```
 
 ---
@@ -125,7 +119,6 @@ Authenticate user and receive JWT token.
   "success": true,
   "message": "Login successful",
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIzYTYyOTI4LWYzZTQtNDhlMy1hYTczLWVhOGYwNzhhZWJmMiIsImlhdCI6MTc1OTg1MDYzNiwiZXhwIjoxNzU5ODc5NDM2fQ.zY2IF-lS4p-ytv6iq_SaGkC3rIrfvzrgwXbl6osOhes",
-  "expiresIn": "8h"
 }
 ```
 
@@ -329,137 +322,6 @@ DELETE /task/eab00f92-8ab1-4eee-87ed-e71623dfe7ce
 }
 ```
 
----
-
-## 💡 Request Examples
-
-### Using cURL
-
-#### 1. Register a new user
-```bash
-curl -X POST http://localhost:5000/api/auth/signup \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "john.doe@example.com",
-    "firstName": "John",
-    "lastName": "Doe",
-    "password": "securePassword123",
-    "role": "software"
-  }'
-```
-
-#### 2. Login
-```bash
-curl -X POST http://localhost:5000/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "john.doe@example.com",
-    "password": "securePassword123"
-  }'
-```
-
-#### 3. Create a task
-```bash
-curl -X POST http://localhost:5000/api/task \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
-  -d '{
-    "title": "New Task",
-    "description": "Task description",
-    "status": "pending",
-    "priority": "medium",
-    "dueDate": "2023-12-31T23:59:59.000Z",
-    "createBy": "userId",
-    "assignedTo": "userId"
-  }'
-```
-
-#### 4. Get all tasks
-```bash
-curl -X GET http://localhost:5000/api/task \
-  -H "Authorization: Bearer YOUR_JWT_TOKEN"
-```
-
-#### 5. Get task by ID
-```bash
-curl -X GET http://localhost:5000/api/task/eab00f92-8ab1-4eee-87ed-e71623dfe7ce \
-  -H "Authorization: Bearer YOUR_JWT_TOKEN"
-```
-
-#### 6. Update a task
-```bash
-curl -X PUT http://localhost:5000/api/task/eab00f92-8ab1-4eee-87ed-e71623dfe7ce \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
-  -d '{
-    "title": "Updated Task",
-    "description": "Updated description",
-    "status": "completed",
-    "priority": "high",
-    "dueDate": "2023-12-31T23:59:59.000Z",
-    "createBy": "userId",
-    "assignedTo": "userId"
-  }'
-```
-
-#### 7. Delete a task
-```bash
-curl -X DELETE http://localhost:5000/api/task/eab00f92-8ab1-4eee-87ed-e71623dfe7ce \
-  -H "Authorization: Bearer YOUR_JWT_TOKEN"
-```
-
----
-
-### Using JavaScript (Fetch API)
-
-```javascript
-// Login
-const login = async () => {
-  const response = await fetch('http://localhost:5000/api/auth/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      email: 'john.doe@example.com',
-      password: 'securePassword123'
-    })
-  });
-  const data = await response.json();
-  return data.token;
-};
-
-// Create Task
-const createTask = async (token) => {
-  const response = await fetch('http://localhost:5000/api/task', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    },
-    body: JSON.stringify({
-      title: 'New Task',
-      description: 'Task description',
-      status: 'pending',
-      priority: 'medium',
-      dueDate: '2023-12-31T23:59:59.000Z',
-      createBy: 'userId',
-      assignedTo: 'userId'
-    })
-  });
-  return await response.json();
-};
-
-// Get All Tasks
-const getTasks = async (token) => {
-  const response = await fetch('http://localhost:5000/api/task', {
-    headers: {
-      'Authorization': `Bearer ${token}`
-    }
-  });
-  return await response.json();
-};
-```
 
 ---
 
@@ -545,62 +407,9 @@ The API uses standard HTTP status codes:
     }
   ]
 }
-```
 
----
 
-## 🔒 Authentication Notes
 
-- JWT tokens expire after **8 hours** (28800 seconds)
-- Tokens must be included in the `Authorization` header as: `Bearer YOUR_TOKEN`
-- Passwords are hashed using bcrypt before storage
-- All task endpoints require authentication
-
----
-
-## 🧪 Testing
-
-You can test the API using:
-- [Postman](https://www.postman.com/)
-- [Insomnia](https://insomnia.rest/)
-- cURL (command line)
-- Your preferred HTTP client
-
-Import the provided Insomnia collection files for quick testing.
-
----
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
-## 👥 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-## 📧 Contact
-
-Your Name - your.email@example.com
-
-Project Link: [https://github.com/yourusername/task-management-api](https://github.com/yourusername/task-management-api)
-
----
-
-## 🙏 Acknowledgments
-
-- Express.js
-- JWT for authentication
-- Node.js community
 
 ---
 
