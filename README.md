@@ -604,4 +604,8 @@ Project Link: [https://github.com/yourusername/task-management-api](https://gith
 
 ---
 
+<<<<<<< HEAD
 **Happy Coding! 🚀**
+=======
+**Happy Coding! 🚀**
+>>>>>>> 30542e67f8dafd35d7de274e6729f0df31dae310
