@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+enum UserRole {
+    ADMIN
+    USER
+    SUPER_ADMIN
+}
+
+model User {
+    id                    String                 @id @default(uuid())
+    email                 String                 @unique
+    firstName             String
+    lastName              String
+    role                  String
+    status                String             
+    password              String
+    isActive              Boolean                @default(false)
+    refreshToken          String?
+    resetToken            String?
+    resetTokenExpiry      DateTime?
+    loginAttempt          Int? @default(0)
+    lastLogin             DateTime?
+    createdAt             DateTime               @default(now())
+    updatedAt             DateTime               @updatedAt
+    User_sessions         User_sessions[]
+
+    @@map("users")
+}
+
+
+model User_sessions {
+    id          String   @id @default(uuid())
+    userId      String
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    logoutTime  DateTime?
+    sessionToken String  
+    refreshToken String
+
+    user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@map("user_sessions")
+}
+
+
+model Task {
+    id          String   @id @default(uuid())
+    title       String
+    description String
+    status      String   @default("pending")
+    priority    String   @default("medium")
+    dueDate     DateTime?
+    createBy    String?
+    assignedTo  String?
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+
+    @@map("tasks")
+}
