@@ -402,7 +402,7 @@ The API uses standard HTTP status codes:
   "errors": [
     {
       "field": "email",
-      "message": "Invalid email format"
+      "message": "Invalid input: expected string, received undefined"
     }
   ]
 }
