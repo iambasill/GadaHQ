@@ -22,7 +22,6 @@ A RESTful API for managing tasks with user authentication and authorization buil
 - User authentication with JWT
 - CRUD operations for tasks
 - Secure password handling
-- Role-based access control
 - RESTful API design
 
 ## 🔧 Prerequisites
@@ -30,7 +29,7 @@ A RESTful API for managing tasks with user authentication and authorization buil
 Before you begin, ensure you have the following installed:
 - Node.js (>= 14.0.0)
 - npm or yarn
-- MongoDB or your preferred database
+- mysql or your preferred database
 
 ## 📦 Installation
 
@@ -45,7 +44,7 @@ cd GadaHQ
 npm install
 ```
 
-3. edit a `.env.example` file in the root directory
+3. edit the `.env.example` file in the root directory
 
 4. Start the server
 ```bash
@@ -78,7 +77,7 @@ Create a new user account.
   "firstName": "John",
   "lastName": "Doe",
   "password": "securePassword123",
-  "role": "software"
+  "role": "user"
 }
 ```
 
@@ -92,7 +91,7 @@ Create a new user account.
     "email": "user@example.com",
     "firstName": "John",
     "lastName": "Doe",
-    "role": "software"
+    "role": "user"
   }
 }
 ```
