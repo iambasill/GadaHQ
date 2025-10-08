@@ -8,4 +8,6 @@ taskRoute.get('/',authMiddleware, getAllTasks)
 taskRoute.post('/', authMiddleware, createTask) 
 taskRoute.get('/:id', authMiddleware, authMiddleware, getTaskById)
 taskRoute.put('/:id',authMiddleware,  updateTask) 
-taskRoute.delete('/:id', authMiddleware, deleteTask) 
+taskRoute.delete('/:id', authMiddleware, deleteTask)
+
+
